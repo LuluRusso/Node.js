@@ -44,7 +44,7 @@ export function pdf(req,res,registro) {
         title: 'Datos del animal',
         headers: ["N° Cirugía", "Nombre", "Edad","Especie","Sexo","Peso","Características"],
         rows: [
-            ["39241", "Feli", "7m","C","H","15kg","Blanca manchas negras"],
+            ["39241", "Feli", "7m","Canino","Hembra","15kg","Blanca manchas negras"],
             ]
       }
     doc.table(animalData,{
@@ -57,6 +57,16 @@ export function pdf(req,res,registro) {
         
         width: '500',
         align:'justify'
+    })
+    doc.moveDown(2)
+    const signature = `            Firma Representante ADMA:                                     Firma del Propietario:                 `
+    const bar =`             _______________________________                       _______________________________ `
+    doc.text(signature,{
+        align:'center'
+    })
+    doc.moveDown(2)
+    doc.text(bar,{
+        align:'center'
     })
     doc.end()
 }
