@@ -41,16 +41,23 @@ export function pdf(req,res,registro) {
     })
 
     const animalData = {
-        title: 'Datos del animal',
-        headers: ["N° Cirugía", "Nombre", "Edad","Especie","Sexo","Peso","Características"],
+        title: { label: "Datos del Animal", align: 'center' },
+        headers:[
+            { label: "N° Cirugía", align: 'center' },
+            { label: "Nombre", align: 'center' },
+            { label: "Edad", align: 'center' },
+            { label: "Especie", align: 'center' },
+            { label: "Sexo", align: 'center' },
+            { label: "Peso", align: 'center' },
+            { label: "Características", align: 'center' }
+          ],
         rows: [
             ["39241", "Feli", "7m","Canino","Hembra","15kg","Blanca manchas negras"],
             ]
       }
     doc.table(animalData,{
-        width: 500,  // Define el ancho de la tabla
-       // Posición vertical
-      })
+        width: 500
+    })
     const secondPart='Mediante el presente, el propietario certifica que la cirugía de castración ha sido realizada en las condiciones acordadas con la Fundación ADMA. Asimismo, se compromete a seguir todas las indicaciones postoperatorias recomendadas para el bienestar del animal.'
     doc.fontSize(10);
     doc.text(secondPart,{
