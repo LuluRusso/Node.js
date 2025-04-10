@@ -10,3 +10,5 @@ npm install express pdfkit
 npm install nodemon -D
 
 npm run dev
+
+npm install pdfkit-table
