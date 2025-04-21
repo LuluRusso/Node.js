@@ -1,5 +1,5 @@
 import PDFDocument from 'pdfkit-table'
-
+import { PassThrough } from 'stream'
 function header(doc) {  
     doc.rect(10, 10, 820,575).stroke
     doc.fontSize(11);   
@@ -32,10 +32,13 @@ Programa Municipal de Salud Animal`, {
 
    
 
-export async function pdf(res,registro,fecha) {
+export async function pdf(registro,fecha) {
+
+    const stream = new PassThrough()
+    const chunks = []
     let b=true
     const totalRow=[]
-    let inicio= 1
+    let inicio= 0
     let final= 13
     
     while (b==true){
@@ -72,9 +75,13 @@ export async function pdf(res,registro,fecha) {
           }
     })
     
-    doc.on('data', data => res.write(data))
-    doc.on('end',()=>res.end())
-    
+    doc.pipe(stream)
+    stream.on('data', chunk => chunks.push(chunk))
+    const endPromise = new Promise((resolve) => {
+        stream.on('end', () => {
+          resolve(Buffer.concat(chunks))
+        })
+      })
     for (let Row of totalRow){
         header(doc)
         doc.rect(10, 10, 820,575).stroke().fill("black")
@@ -114,12 +121,9 @@ export async function pdf(res,registro,fecha) {
         
     }
 
-        
-    
 
-    //doc.moveDown(100)
-    
     doc.end()
+    return endPromise
 }
 
 

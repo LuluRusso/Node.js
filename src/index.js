@@ -13,12 +13,14 @@ app.listen(3000, () => {
 
 const router = Router()
 
-router.get('/download', (req, res) => {
+router.get('/download', async(req, res) => {
+  const buffer = await pdf(registro,fecha);
   res.writeHead(200, {
     "Content-Type": "application/pdf",
-    "Content-Disposition": "inline; filename=adma.pdf"
+    "Content-Disposition": "inline; filename=adma.pdf",
+    "Content-Length": buffer.length
   });
-  pdf(res, registro,fecha);
+  res.end(buffer)
 })
     
 app.use(router)  
