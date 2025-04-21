@@ -1,6 +1,6 @@
 import PDFDocument from 'pdfkit-table'
 
-function header(doc) {
+function header(doc) {  
     doc.rect(10, 10, 820,575).stroke
     doc.fontSize(11);   
     doc.font('Helvetica')
@@ -42,10 +42,10 @@ export async function pdf(res,registro,fecha) {
         b= false
         const Row=[]
         let c=0
-        console.log("vuelta")
+
         for (let p of registro){
             if (inicio <= c && c < final){
-                Row.push([String(c),p.surgeryNumber,p.ownerName,p.home,p.phone,p.animalName,p.age,p.species,p.sex,p.weight,p.characteristics])
+                Row.push([String(c),p.surgeryNumber,p.ownerName,p.home,p.phone,p.animalName,p.age,p.species,p.sex,p.weight,p.feactures])
                 b=true}
                 
                 

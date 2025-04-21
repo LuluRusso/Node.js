@@ -1,5 +1,5 @@
 class Animal {
-    constructor(surgeryNumber,ownerName,home,phone,animalName,age,species,sex,weight,characteristics) {
+    constructor(surgeryNumber,ownerName,home,phone,animalName,age,species,sex,weight,feactures) {
       this.surgeryNumber = surgeryNumber;
       this.ownerName=ownerName;
       this.home=home;
@@ -9,7 +9,7 @@ class Animal {
       this.species=species;
       this.sex=sex;
       this.weight=weight;
-      this.characteristics=characteristics;
+      this.feactures=feactures;
     }
   }
  const registro = [
