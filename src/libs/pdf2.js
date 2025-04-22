@@ -48,7 +48,7 @@ export async function pdf(registro,fecha) {
 
         for (let p of registro){
             if (inicio <= c && c < final){
-                Row.push([String(c),p.surgeryNumber,p.ownerName,p.home,p.phone,p.animalName,p.age,p.species,p.sex,p.weight,p.feactures])
+                Row.push([String(c+1),p.surgeryNumber,p.ownerName,p.home,p.phone,p.animalName,p.age,p.species,p.sex,p.weight,p.feactures])
                 b=true}
                 
                 
