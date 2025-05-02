@@ -1,7 +1,7 @@
 import express from 'express'
 import { Router } from "express";
-import { pdf } from "./libs/pdf3.js"
-import {registro} from './registroTurno.js'
+import { pdf } from "./libs/income-form-pdf.js"
+import {registro} from './mockData/income-form-register.js'
 
 const fecha= '19/4/2025'
 
@@ -14,7 +14,7 @@ app.listen(3000, () => {
 const router = Router()
 
 router.get('/download', async(req, res) => {
-  const buffer = await pdf(registro,[{title:"fecha",value:"15/4"},{title:"Domicilio",value:"En casa"}]);
+  const buffer = await pdf(registro,fecha);
   res.writeHead(200, {
     "Content-Type": "application/pdf",
     "Content-Disposition": "inline; filename=adma.pdf",

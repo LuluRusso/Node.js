@@ -9,10 +9,10 @@ Programa Municipal de Salud Animal`, {
         align: 'center',
         underline:true,
         })
-    doc.image('gobierno.png',690,15,{
+    doc.image('src/assets/gobierno.png',690,15,{
         width:110
     })
-    doc.image('adma1.png', 30, 10, {
+    doc.image('src/assets/adma1.png', 30, 10, {
         width:100
     })
     
@@ -85,8 +85,9 @@ export async function pdf(registro,fecha) {
     for (let Row of totalRow){
         header(doc)
         doc.rect(10, 10, 820,575).stroke().fill("black")
+        doc.text(`                                                        PLANILLA DE CIRUGIA                                                      FECHA: ${fecha}`)
+        doc.moveDown(1)
         const animalData = {
-            title: { label: `                                                        PLANILLA DE CIRUGIA                                                      FECHA: ${fecha}`},
             headers:[
                 { label: "-", align: 'center' },
                 { label: "N° Cirugía", align: 'center' },
